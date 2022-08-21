@@ -130,17 +130,17 @@ while True:
                             data = data.json()
                             priceNow = float(data['price'])
 
-                            now = datetime.now()
-                            now = now.strftime("%Y-%m-%d %H:%M:%S")
-                            datem = datetime.strptime(date, "%Y-%m-%d %H:%M:%S")
-                            then = datetime(int(datem.year), int(datem.month), int(datem.day), int(datem.hour), int(datem.minute), int(datem.second))
-                            date = getDuration(then)
+                            
 
                             # STOP LOSE
                             try:
                                 if priceNow >  float(stop):
                                     pass
                                 elif priceNow <=  float(stop):          
+                                    now = datetime.now()
+                                    now = now.strftime("%Y-%m-%d %H:%M:%S")
+                                    datem = datetime.strptime(date, "%Y-%m-%d %H:%M:%S")
+                                    then = datetime(int(datem.year), int(datem.month), int(datem.day), int(datem.hour), int(datem.minute), int(datem.second))
                                     date = getDuration(then)
                                     per = get_change(float(entry1), float(stop))
                                     per = round(per, 2)
@@ -152,6 +152,11 @@ while True:
                             # ENTRY POINT
                             try:
                                 if priceNow >=  float(entry1) and priceNow <=  float(entry2): 
+                                    now = datetime.now()
+                                    now = now.strftime("%Y-%m-%d %H:%M:%S")
+                                    datem = datetime.strptime(date, "%Y-%m-%d %H:%M:%S")
+                                    then = datetime(int(datem.year), int(datem.month), int(datem.day), int(datem.hour), int(datem.minute), int(datem.second))
+                                    date = getDuration(then)
                                     send_msg("#"+str(coin)+"\n\n💎 دخلت لمنطقة الشراء ("+str(entry1)+" - "+str(entry2)+")\n\n"+str(date), message_id, chat_id)
                                     user.editsignals(collection="signal", Owenr=str(chat_id), coin=coin, newInfo="false", target="entry1-entry2")
                             except :
@@ -160,6 +165,11 @@ while True:
                             # TARGET 1
                             try:
                                 if priceNow >=  float(target1): 
+                                    now = datetime.now()
+                                    now = now.strftime("%Y-%m-%d %H:%M:%S")
+                                    datem = datetime.strptime(date, "%Y-%m-%d %H:%M:%S")
+                                    then = datetime(int(datem.year), int(datem.month), int(datem.day), int(datem.hour), int(datem.minute), int(datem.second))
+                                    date = getDuration(then)
                                     per = get_change(float(target1), float(entry1))
                                     per = round(per, 2)
                                     send_msg("#"+str(coin)+"\n\n💎 ضربت الهذف الأول ("+str(target1)+")\n\n✅ نسبة الربح : "+str(per)+"%\n\n"+str(date), message_id, chat_id)
@@ -170,7 +180,11 @@ while True:
                             # TARGET 2
                             try:
                                 if priceNow >=  float(target2): 
-                                    
+                                    now = datetime.now()
+                                    now = now.strftime("%Y-%m-%d %H:%M:%S")
+                                    datem = datetime.strptime(date, "%Y-%m-%d %H:%M:%S")
+                                    then = datetime(int(datem.year), int(datem.month), int(datem.day), int(datem.hour), int(datem.minute), int(datem.second))
+                                    date = getDuration(then)
                                     per = get_change(float(target2), float(entry1))
                                     per = round(per, 2)
                                     send_msg("#"+str(coin)+"\n\n💎 ضربت الهذف الثاني ("+str(target2)+")\n\n✅ نسبة الربح : "+str(per)+"%\n\n"+str(date), message_id, chat_id)
@@ -181,6 +195,11 @@ while True:
                             # TARGET 3
                             try:
                                 if priceNow >=  float(target3): 
+                                    now = datetime.now()
+                                    now = now.strftime("%Y-%m-%d %H:%M:%S")
+                                    datem = datetime.strptime(date, "%Y-%m-%d %H:%M:%S")
+                                    then = datetime(int(datem.year), int(datem.month), int(datem.day), int(datem.hour), int(datem.minute), int(datem.second))
+                                    date = getDuration(then)
                                     per = get_change(float(target3), float(entry1))
                                     per = round(per, 2)
                                     send_msg("#"+str(coin)+"\n\n💎 ضربت الهذف التالث ("+str(target3)+")\n\n✅ نسبة الربح : "+str(per)+"%\n\n"+str(date), message_id, chat_id)
@@ -191,6 +210,11 @@ while True:
                             # TARGET 4
                             try:
                                 if priceNow >=  float(target4): 
+                                    now = datetime.now()
+                                    now = now.strftime("%Y-%m-%d %H:%M:%S")
+                                    datem = datetime.strptime(date, "%Y-%m-%d %H:%M:%S")
+                                    then = datetime(int(datem.year), int(datem.month), int(datem.day), int(datem.hour), int(datem.minute), int(datem.second))
+                                    date = getDuration(then)
                                     per = get_change(float(target4), float(entry1))
                                     per = round(per, 2)
                                     send_msg("#"+str(coin)+"\n\n💎 ضربت الهذف الرابع ("+str(target4)+")\n\n✅ نسبة الربح : "+str(per)+"%\n\n"+str(date), message_id, chat_id)
