@@ -138,13 +138,12 @@ while True:
                                     pass
                                 elif priceNow <=  float(stop):          
                                     now = datetime.now()
-                                    # now = now.strftime("%Y-%m-%d %H:%M:%S")
                                     datem = datetime.strptime(date, "%Y-%m-%d %H:%M:%S")
                                     then = datetime(int(datem.year), int(datem.month), int(datem.day), int(datem.hour), int(datem.minute), int(datem.second))
                                     date = getDuration(then, now)
                                     per = get_change(float(entry1), float(stop))
                                     per = round(per, 2)
-                                    send_msg("#"+str(coin)+"\n\n⛔️ ضربت ستوب لوز - نعوضها لكم ان شاء الله\n\n🩸 نسبة الخسارة : -"+str(per)+"%\n\n"+str(date), message_id, chat_id)
+                                    send_msg("#"+str(coin)+"\n\n⛔️ ضربت ستوب لوز - نعوضها لكم ان شاء الله\n\n🩸 نسبة الخسارة : "+str(per)+"%-\n\n"+str(date), message_id, chat_id)
                                     user.editsignals(collection="signal", Owenr=str(chat_id), coin=coin, newInfo="false", target="stop-entry1-entry2-target1-target2-target3-target4")
                             except :
                                 pass
@@ -153,7 +152,6 @@ while True:
                             try:
                                 if priceNow >=  float(entry1) and priceNow <=  float(entry2): 
                                     now = datetime.now()
-                                    now = now.strftime("%Y-%m-%d %H:%M:%S")
                                     datem = datetime.strptime(date, "%Y-%m-%d %H:%M:%S")
                                     then = datetime(int(datem.year), int(datem.month), int(datem.day), int(datem.hour), int(datem.minute), int(datem.second))
                                     date = getDuration(then)
@@ -166,7 +164,6 @@ while True:
                             try:
                                 if priceNow >=  float(target1): 
                                     now = datetime.now()
-                                    now = now.strftime("%Y-%m-%d %H:%M:%S")
                                     datem = datetime.strptime(date, "%Y-%m-%d %H:%M:%S")
                                     then = datetime(int(datem.year), int(datem.month), int(datem.day), int(datem.hour), int(datem.minute), int(datem.second))
                                     date = getDuration(then)
@@ -181,7 +178,6 @@ while True:
                             try:
                                 if priceNow >=  float(target2): 
                                     now = datetime.now()
-                                    now = now.strftime("%Y-%m-%d %H:%M:%S")
                                     datem = datetime.strptime(date, "%Y-%m-%d %H:%M:%S")
                                     then = datetime(int(datem.year), int(datem.month), int(datem.day), int(datem.hour), int(datem.minute), int(datem.second))
                                     date = getDuration(then)
@@ -196,7 +192,6 @@ while True:
                             try:
                                 if priceNow >=  float(target3): 
                                     now = datetime.now()
-                                    now = now.strftime("%Y-%m-%d %H:%M:%S")
                                     datem = datetime.strptime(date, "%Y-%m-%d %H:%M:%S")
                                     then = datetime(int(datem.year), int(datem.month), int(datem.day), int(datem.hour), int(datem.minute), int(datem.second))
                                     date = getDuration(then)
@@ -211,7 +206,6 @@ while True:
                             try:
                                 if priceNow >=  float(target4): 
                                     now = datetime.now()
-                                    now = now.strftime("%Y-%m-%d %H:%M:%S")
                                     datem = datetime.strptime(date, "%Y-%m-%d %H:%M:%S")
                                     then = datetime(int(datem.year), int(datem.month), int(datem.day), int(datem.hour), int(datem.minute), int(datem.second))
                                     date = getDuration(then)
