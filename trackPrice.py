@@ -196,8 +196,6 @@ while True:
                             except:
                                 pass
                             
-                            time.sleep(10)
-            
                         except:
                             pass
                 except:
