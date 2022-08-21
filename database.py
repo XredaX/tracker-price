@@ -25,9 +25,9 @@ class user():
         count = collection.count_documents({})
         return data, count
 
-    def addsignals(collection, Owenr, coin, entry1, entry2, target1, target2, target3, target4, stop, chat, message_id):
+    def addsignals(collection, Owenr, coin, entry1, entry2, target1, target2, target3, target4, stop, chat, message_id, date1):
         collection = db[collection]
-        signals = {"Owenr":Owenr, "coin":coin, "entry1":entry1, "entry2":entry2, "target1":target1, "target2":target2, "target3":target3, "target4":target4, "stop":stop, "chat":chat, "message_id":message_id}
+        signals = {"Owenr":Owenr, "coin":coin, "entry1":entry1, "entry2":entry2, "target1":target1, "target2":target2, "target3":target3, "target4":target4, "stop":stop, "chat":chat, "message_id":message_id, "date":date1}
         collection.insert_one(signals)
 
     def deletesignals(collection, Owenr, coin):
