@@ -8,7 +8,7 @@ token = "5545323927:AAH0Ry9v88G9bMj8TMl53wuae8CkAQRqOtY"
 
 print("start")
 
-def getDuration(then, now = datetime.now(), interval = "default"):
+def getDuration(then, now, interval = "default"):
 
     duration = now - then # For build-in functions
     duration_in_s = duration.total_seconds() 
@@ -138,10 +138,10 @@ while True:
                                     pass
                                 elif priceNow <=  float(stop):          
                                     now = datetime.now()
-                                    now = now.strftime("%Y-%m-%d %H:%M:%S")
+                                    # now = now.strftime("%Y-%m-%d %H:%M:%S")
                                     datem = datetime.strptime(date, "%Y-%m-%d %H:%M:%S")
                                     then = datetime(int(datem.year), int(datem.month), int(datem.day), int(datem.hour), int(datem.minute), int(datem.second))
-                                    date = getDuration(then)
+                                    date = getDuration(then, now)
                                     per = get_change(float(entry1), float(stop))
                                     per = round(per, 2)
                                     send_msg("#"+str(coin)+"\n\n⛔️ ضربت ستوب لوز - نعوضها لكم ان شاء الله\n\n🩸 نسبة الخسارة : -"+str(per)+"%\n\n"+str(date), message_id, chat_id)
