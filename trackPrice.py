@@ -78,6 +78,7 @@ while True:
         date = resp['result'][0]['channel_post']['date']
         date = datetime.fromtimestamp(date)
         date1 = date
+        print(date1)
 
         count = user.findacc(collection="acc", Owenr=str(chat_id))
         if count >= 0:
@@ -130,6 +131,7 @@ while True:
                             priceNow = float(data['price'])
 
                             now = datetime.now()
+                            print(now)
                             datem = datetime.strptime(date, "%Y-%m-%d %H:%M:%S")
                             then = datetime(int(datem.year), int(datem.month), int(datem.day), int(datem.hour), int(datem.minute), int(datem.second))
                             date = getDuration(then)
