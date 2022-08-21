@@ -78,6 +78,7 @@ while True:
     chat_id = resp['result'][0]['channel_post']['sender_chat']['id']
     date = resp['result'][0]['channel_post']['date']
     date = datetime.fromtimestamp(date)
+    date1 = date
 
     count = user.findacc(collection="acc", Owenr=str(chat_id))
     if count >= 0:
@@ -105,7 +106,7 @@ while True:
         print("ddddddddd")
         if data == 0:
             print("jjjjjjjjj")
-            user.addsignals(collection="signal", Owenr=str(chat_id), coin=coin, entry1=listy[1], entry2=listy[2], target1=listy[3], target2=listy[4], target3=listy[5], target4=listy[6], stop=listy[0], chat=str(chat_id), message_id=str(message_id), date=date)
+            user.addsignals(collection="signal", Owenr=str(chat_id), coin=coin, entry1=listy[1], entry2=listy[2], target1=listy[3], target2=listy[4], target3=listy[5], target4=listy[6], stop=listy[0], chat=str(chat_id), message_id=str(message_id), date=date1)
             print("aaaaaaaaa")
     # except :
     #     pass
