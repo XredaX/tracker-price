@@ -2,7 +2,6 @@ import requests
 import re
 from ticker_rules import rules
 from database import user
-import time
 from datetime import datetime
 
 token = "5545323927:AAH0Ry9v88G9bMj8TMl53wuae8CkAQRqOtY"
@@ -69,47 +68,42 @@ def send_msg(msg, message_id, chat_id):
     requests.get(base_url1 + "/sendMessage", data = parameters)
 
 while True:
-    # try:
-    base_url = "https://api.telegram.org/bot"+token+"/getUpdates?offset=-1"
-    resp = requests.get(base_url)
-    resp = resp.json()
-    msg = resp['result'][0]['channel_post']['text']
-    message_id = resp['result'][0]['channel_post']['message_id']
-    chat_id = resp['result'][0]['channel_post']['sender_chat']['id']
-    date = resp['result'][0]['channel_post']['date']
-    date = datetime.fromtimestamp(date)
-    date1 = date
+    try:
+        base_url = "https://api.telegram.org/bot"+token+"/getUpdates?offset=-1"
+        resp = requests.get(base_url)
+        resp = resp.json()
+        msg = resp['result'][0]['channel_post']['text']
+        message_id = resp['result'][0]['channel_post']['message_id']
+        chat_id = resp['result'][0]['channel_post']['sender_chat']['id']
+        date = resp['result'][0]['channel_post']['date']
+        date = datetime.fromtimestamp(date)
+        date1 = date
 
-    count = user.findacc(collection="acc", Owenr=str(chat_id))
-    if count >= 0:
-        print("hhhhhhhh")
-        coin = ""
-        res = msg.split()
-        listy = re.findall("\d+\.\d+", str(msg))
-        if len(listy) >= 4:
-            listy.sort()
-            for r in res:
-                cleanString = re.sub('\W+','', r).upper()
-                if re.search("USDT", cleanString):
-                    for t in rules:
-                        if cleanString == t:
-                            coin = cleanString
-                    break
-                else:
-                    cleanString = cleanString+"USDT"
-                    for t in rules:
-                        if cleanString == t:
-                            coin = cleanString
+        count = user.findacc(collection="acc", Owenr=str(chat_id))
+        if count >= 0:
+            coin = ""
+            res = msg.split()
+            listy = re.findall("\d+\.\d+", str(msg))
+            if len(listy) >= 4:
+                listy.sort()
+                for r in res:
+                    cleanString = re.sub('\W+','', r).upper()
+                    if re.search("USDT", cleanString):
+                        for t in rules:
+                            if cleanString == t:
+                                coin = cleanString
+                        break
+                    else:
+                        cleanString = cleanString+"USDT"
+                        for t in rules:
+                            if cleanString == t:
+                                coin = cleanString
 
-        print("kkkkkkkk")
-        data = user.findsignals(collection="signal", Owenr=str(chat_id), coin=coin)
-        print("ddddddddd")
-        if data == 0:
-            print("jjjjjjjjj")
-            user.addsignals(collection="signal", Owenr=str(chat_id), coin=coin, entry1=listy[1], entry2=listy[2], target1=listy[3], target2=listy[4], target3=listy[5], target4=listy[6], stop=listy[0], chat=str(chat_id), message_id=str(message_id), date1=date1)
-            print("aaaaaaaaa")
-    # except :
-    #     pass
+            data = user.findsignals(collection="signal", Owenr=str(chat_id), coin=coin)
+            if data == 0:
+                user.addsignals(collection="signal", Owenr=str(chat_id), coin=coin, entry1=listy[1], entry2=listy[2], target1=listy[3], target2=listy[4], target3=listy[5], target4=listy[6], stop=listy[0], chat=str(chat_id), message_id=str(message_id), date1=date1)
+    except :
+        pass
             
 
     data = user.findsignals1(collection="signal")
@@ -129,20 +123,16 @@ while True:
                             target4 = d["target4"]
                             message_id = d["message_id"]
                             date = str(d["date"])
-                            print("HERE 1")
 
                             key = "https://api.binance.com/api/v3/ticker/price?symbol="+str(coin)
                             data = requests.get(key)
                             data = data.json()
                             priceNow = float(data['price'])
 
-                            print("HERE 2")
                             now = datetime.now()
                             datem = datetime.strptime(date, "%Y-%m-%d %H:%M:%S")
                             then = datetime(int(datem.year), int(datem.month), int(datem.day), int(datem.hour), int(datem.minute), int(datem.second))
                             date = getDuration(then)
-
-                            print("HERE 3")
 
                             # STOP LOSE
                             try:
@@ -150,7 +140,7 @@ while True:
                                     pass
                                 elif priceNow <=  float(stop):          
                                     date = getDuration(then)
-                                    per = get_change(priceNow, float(stop))
+                                    per = get_change(float(entry1), float(stop))
                                     per = round(per, 2)
                                     send_msg("#"+str(coin)+"\n\n⛔️ ضربت ستوب لوز - نعوضها لكم ان شاء الله\n\n🩸 نسبة الخسارة : -"+str(per)+"%\n\n"+str(date), message_id, chat_id)
                                     user.editsignals(collection="signal", Owenr=str(chat_id), coin=coin, newInfo="false", target="stop-entry1-entry2-target1-target2-target3-target4")
@@ -168,7 +158,7 @@ while True:
                             # TARGET 1
                             try:
                                 if priceNow >=  float(target1): 
-                                    per = get_change(priceNow, float(entry1))
+                                    per = get_change(float(target1), float(entry1))
                                     per = round(per, 2)
                                     send_msg("#"+str(coin)+"\n\n💎 ضربت الهذف الأول ("+str(target1)+")\n\n✅ نسبة الربح : "+str(per)+"%\n\n"+str(date), message_id, chat_id)
                                     user.editsignals(collection="signal", Owenr=str(chat_id), coin=coin, newInfo="false", target="entry1-entry2-target1")
@@ -179,7 +169,7 @@ while True:
                             try:
                                 if priceNow >=  float(target2): 
                                     
-                                    per = get_change(priceNow, float(entry1))
+                                    per = get_change(float(target2), float(entry1))
                                     per = round(per, 2)
                                     send_msg("#"+str(coin)+"\n\n💎 ضربت الهذف الثاني ("+str(target2)+")\n\n✅ نسبة الربح : "+str(per)+"%\n\n"+str(date), message_id, chat_id)
                                     user.editsignals(collection="signal", Owenr=str(chat_id), coin=coin, newInfo="false", target="entry1-entry2-target1-target2")
@@ -189,7 +179,7 @@ while True:
                             # TARGET 3
                             try:
                                 if priceNow >=  float(target3): 
-                                    per = get_change(priceNow, float(entry1))
+                                    per = get_change(float(target3), float(entry1))
                                     per = round(per, 2)
                                     send_msg("#"+str(coin)+"\n\n💎 ضربت الهذف التالث ("+str(target3)+")\n\n✅ نسبة الربح : "+str(per)+"%\n\n"+str(date), message_id, chat_id)
                                     user.editsignals(collection="signal", Owenr=str(chat_id), coin=coin, newInfo="false", target="entry1-entry2-target1-target2-target3")
@@ -199,7 +189,7 @@ while True:
                             # TARGET 4
                             try:
                                 if priceNow >=  float(target4): 
-                                    per = get_change(priceNow, float(entry1))
+                                    per = get_change(float(target4), float(entry1))
                                     per = round(per, 2)
                                     send_msg("#"+str(coin)+"\n\n💎 ضربت الهذف الرابع ("+str(target4)+")\n\n✅ نسبة الربح : "+str(per)+"%\n\n"+str(date), message_id, chat_id)
                                     user.editsignals(collection="signal", Owenr=str(chat_id), coin=coin, newInfo="false", target="entry1-entry2-target1-target2-target3-target4-stop")
