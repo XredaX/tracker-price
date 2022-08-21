@@ -69,46 +69,46 @@ def send_msg(msg, message_id, chat_id):
     requests.get(base_url1 + "/sendMessage", data = parameters)
 
 while True:
-    try:
-        base_url = "https://api.telegram.org/bot"+token+"/getUpdates?offset=-1"
-        resp = requests.get(base_url)
-        resp = resp.json()
-        msg = resp['result'][0]['channel_post']['text']
-        message_id = resp['result'][0]['channel_post']['message_id']
-        chat_id = resp['result'][0]['channel_post']['sender_chat']['id']
-        date = resp['result'][0]['channel_post']['date']
-        date = datetime.fromtimestamp(date)
+    # try:
+    base_url = "https://api.telegram.org/bot"+token+"/getUpdates?offset=-1"
+    resp = requests.get(base_url)
+    resp = resp.json()
+    msg = resp['result'][0]['channel_post']['text']
+    message_id = resp['result'][0]['channel_post']['message_id']
+    chat_id = resp['result'][0]['channel_post']['sender_chat']['id']
+    date = resp['result'][0]['channel_post']['date']
+    date = datetime.fromtimestamp(date)
 
-        count = user.findacc(collection="acc", Owenr=str(chat_id))
-        if count >= 0:
-            print("hhhhhhhh")
-            coin = ""
-            res = msg.split()
-            listy = re.findall("\d+\.\d+", str(msg))
-            if len(listy) >= 4:
-                listy.sort()
-                for r in res:
-                    cleanString = re.sub('\W+','', r).upper()
-                    if re.search("USDT", cleanString):
-                        for t in rules:
-                            if cleanString == t:
-                                coin = cleanString
-                        break
-                    else:
-                        cleanString = cleanString+"USDT"
-                        for t in rules:
-                            if cleanString == t:
-                                coin = cleanString
+    count = user.findacc(collection="acc", Owenr=str(chat_id))
+    if count >= 0:
+        print("hhhhhhhh")
+        coin = ""
+        res = msg.split()
+        listy = re.findall("\d+\.\d+", str(msg))
+        if len(listy) >= 4:
+            listy.sort()
+            for r in res:
+                cleanString = re.sub('\W+','', r).upper()
+                if re.search("USDT", cleanString):
+                    for t in rules:
+                        if cleanString == t:
+                            coin = cleanString
+                    break
+                else:
+                    cleanString = cleanString+"USDT"
+                    for t in rules:
+                        if cleanString == t:
+                            coin = cleanString
 
-            print("kkkkkkkk")
-            data = user.findsignals(collection="signal", Owenr=str(chat_id), coin=coin)
-            print("ddddddddd")
-            if data == 0:
-                print("jjjjjjjjj")
-                user.addsignals(collection="signal", Owenr=str(chat_id), coin=coin, entry1=listy[1], entry2=listy[2], target1=listy[3], target2=listy[4], target3=listy[5], target4=listy[6], stop=listy[0], chat=str(chat_id), message_id=str(message_id), date=date)
-                print("aaaaaaaaa")
-    except :
-        pass
+        print("kkkkkkkk")
+        data = user.findsignals(collection="signal", Owenr=str(chat_id), coin=coin)
+        print("ddddddddd")
+        if data == 0:
+            print("jjjjjjjjj")
+            user.addsignals(collection="signal", Owenr=str(chat_id), coin=coin, entry1=listy[1], entry2=listy[2], target1=listy[3], target2=listy[4], target3=listy[5], target4=listy[6], stop=listy[0], chat=str(chat_id), message_id=str(message_id), date=date)
+            print("aaaaaaaaa")
+    # except :
+    #     pass
             
 
     data = user.findsignals1(collection="signal")
@@ -204,7 +204,7 @@ while True:
                                     user.editsignals(collection="signal", Owenr=str(chat_id), coin=coin, newInfo="false", target="entry1-entry2-target1-target2-target3-target4-stop")
                             except:
                                 pass
-
+                            
             
                         except:
                             pass
