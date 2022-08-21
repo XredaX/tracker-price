@@ -123,16 +123,20 @@ while True:
                             target4 = d["target4"]
                             message_id = d["message_id"]
                             date = str(d["date"])
+                            print("HERE 1")
 
                             key = "https://api.binance.com/api/v3/ticker/price?symbol="+str(coin)
                             data = requests.get(key)
                             data = data.json()
                             priceNow = float(data['price'])
 
+                            print("HERE 2")
                             now = datetime.now()
                             datem = datetime.strptime(date, "%Y-%m-%d %H:%M:%S")
                             then = datetime(int(datem.year), int(datem.month), int(datem.day), int(datem.hour), int(datem.minute), int(datem.second))
                             date = getDuration(then)
+
+                            print("HERE 3")
 
                             # STOP LOSE
                             try:
@@ -196,6 +200,8 @@ while True:
                             except:
                                 pass
                             
+                            time.sleep(10)
+            
                         except:
                             pass
                 except:
