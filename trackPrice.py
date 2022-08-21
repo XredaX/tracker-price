@@ -79,7 +79,6 @@ while True:
         date = datetime.fromtimestamp(date)
         date = date.strftime("%Y-%m-%d %H:%M:%S")
         date1 = date
-        print(date1)
 
         count = user.findacc(collection="acc", Owenr=str(chat_id))
         if count >= 0:
@@ -133,7 +132,6 @@ while True:
 
                             now = datetime.now()
                             now = now.strftime("%Y-%m-%d %H:%M:%S")
-                            print(now)
                             datem = datetime.strptime(date, "%Y-%m-%d %H:%M:%S")
                             then = datetime(int(datem.year), int(datem.month), int(datem.day), int(datem.hour), int(datem.minute), int(datem.second))
                             date = getDuration(then)
