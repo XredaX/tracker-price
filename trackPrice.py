@@ -105,8 +105,8 @@ while True:
             print("ddddddddd")
             if data == 0:
                 print("jjjjjjjjj")
-                data = user.addsignals(collection="signal", Owenr=str(chat_id), coin=coin, entry1=listy[1], entry2=listy[2], target1=listy[3], target2=listy[4], target3=listy[5], target4=listy[6], stop=listy[0], chat=str(chat_id), message_id=str(message_id), date=date)
-            print("aaaaaaaaa")
+                user.addsignals(collection="signal", Owenr=str(chat_id), coin=coin, entry1=listy[1], entry2=listy[2], target1=listy[3], target2=listy[4], target3=listy[5], target4=listy[6], stop=listy[0], chat=str(chat_id), message_id=str(message_id), date=date)
+                print("aaaaaaaaa")
     except :
         pass
             
@@ -204,6 +204,7 @@ while True:
                                     user.editsignals(collection="signal", Owenr=str(chat_id), coin=coin, newInfo="false", target="entry1-entry2-target1-target2-target3-target4-stop")
                             except:
                                 pass
+
             
                         except:
                             pass
