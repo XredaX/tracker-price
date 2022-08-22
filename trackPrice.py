@@ -183,40 +183,43 @@ while True:
                                 # TARGET 2
                                 try:
                                     if priceNow >=  float(target2): 
-                                        now = datetime.now()
-                                        datem = datetime.strptime(date, "%Y-%m-%d %H:%M:%S")
-                                        then = datetime(int(datem.year), int(datem.month), int(datem.day), int(datem.hour), int(datem.minute), int(datem.second))
-                                        date = getDuration(then, now)
-                                        per = get_change(float(target2), float(entry1))
-                                        per = round(per, 2)
-                                        send_msg("#"+str(coin)+"\n\n💎 ضربت الهذف الثاني ("+str(target2)+")\n\n✅ نسبة الربح : "+str(per)+"%\n\n"+str(date), message_id, chat_id)
-                                        user.editsignals(collection="signal", Owenr=str(chat_id), coin=coin, newInfo="false", target="entry1-entry2-target1-target2")
+                                        if str(entry1) == "false" and str(entry2) == "false": 
+                                            now = datetime.now()
+                                            datem = datetime.strptime(date, "%Y-%m-%d %H:%M:%S")
+                                            then = datetime(int(datem.year), int(datem.month), int(datem.day), int(datem.hour), int(datem.minute), int(datem.second))
+                                            date = getDuration(then, now)
+                                            per = get_change(float(target2), float(entry1))
+                                            per = round(per, 2)
+                                            send_msg("#"+str(coin)+"\n\n💎 ضربت الهذف الثاني ("+str(target2)+")\n\n✅ نسبة الربح : "+str(per)+"%\n\n"+str(date), message_id, chat_id)
+                                            user.editsignals(collection="signal", Owenr=str(chat_id), coin=coin, newInfo="false", target="entry1-entry2-target1-target2")
                                 except:
                                     pass
                                 # TARGET 3
                                 try:
                                     if priceNow >=  float(target3): 
-                                        now = datetime.now()
-                                        datem = datetime.strptime(date, "%Y-%m-%d %H:%M:%S")
-                                        then = datetime(int(datem.year), int(datem.month), int(datem.day), int(datem.hour), int(datem.minute), int(datem.second))
-                                        date = getDuration(then, now)
-                                        per = get_change(float(target3), float(entry1))
-                                        per = round(per, 2)
-                                        send_msg("#"+str(coin)+"\n\n💎 ضربت الهذف التالث ("+str(target3)+")\n\n✅ نسبة الربح : "+str(per)+"%\n\n"+str(date), message_id, chat_id)
-                                        user.editsignals(collection="signal", Owenr=str(chat_id), coin=coin, newInfo="false", target="entry1-entry2-target1-target2-target3")
+                                        if str(entry1) == "false" and str(entry2) == "false": 
+                                            now = datetime.now()
+                                            datem = datetime.strptime(date, "%Y-%m-%d %H:%M:%S")
+                                            then = datetime(int(datem.year), int(datem.month), int(datem.day), int(datem.hour), int(datem.minute), int(datem.second))
+                                            date = getDuration(then, now)
+                                            per = get_change(float(target3), float(entry1))
+                                            per = round(per, 2)
+                                            send_msg("#"+str(coin)+"\n\n💎 ضربت الهذف التالث ("+str(target3)+")\n\n✅ نسبة الربح : "+str(per)+"%\n\n"+str(date), message_id, chat_id)
+                                            user.editsignals(collection="signal", Owenr=str(chat_id), coin=coin, newInfo="false", target="entry1-entry2-target1-target2-target3")
                                 except:
                                     pass
                                 # TARGET 4
                                 try:
                                     if priceNow >=  float(target4): 
-                                        now = datetime.now()
-                                        datem = datetime.strptime(date, "%Y-%m-%d %H:%M:%S")
-                                        then = datetime(int(datem.year), int(datem.month), int(datem.day), int(datem.hour), int(datem.minute), int(datem.second))
-                                        date = getDuration(then, now)
-                                        per = get_change(float(target4), float(entry1))
-                                        per = round(per, 2)
-                                        send_msg("#"+str(coin)+"\n\n💎 ضربت الهذف الرابع ("+str(target4)+")\n\n✅ نسبة الربح : "+str(per)+"%\n\n"+str(date), message_id, chat_id)
-                                        user.editsignals(collection="signal", Owenr=str(chat_id), coin=coin, newInfo="false", target="entry1-entry2-target1-target2-target3-target4-stop")
+                                        if str(entry1) == "false" and str(entry2) == "false": 
+                                            now = datetime.now()
+                                            datem = datetime.strptime(date, "%Y-%m-%d %H:%M:%S")
+                                            then = datetime(int(datem.year), int(datem.month), int(datem.day), int(datem.hour), int(datem.minute), int(datem.second))
+                                            date = getDuration(then, now)
+                                            per = get_change(float(target4), float(entry1))
+                                            per = round(per, 2)
+                                            send_msg("#"+str(coin)+"\n\n💎 ضربت الهذف الرابع ("+str(target4)+")\n\n✅ نسبة الربح : "+str(per)+"%\n\n"+str(date), message_id, chat_id)
+                                            user.editsignals(collection="signal", Owenr=str(chat_id), coin=coin, newInfo="false", target="entry1-entry2-target1-target2-target3-target4-stop")
                                 except:
                                     pass
                         except:
