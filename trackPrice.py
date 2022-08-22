@@ -4,7 +4,7 @@ from ticker_rules import rules
 from database import user
 from dateutil.relativedelta import relativedelta
 from datetime import datetime
-token = "5545323927:AAH0Ry9v88G9bMj8TMl53wuae8CkAQRqOtY"
+token = "5707050273:AAFZ8bMS0DC6DTKP9ZVz_bWqa_Av6Y0RAEg"
 print("start")
 def getDuration(then, now, interval = "default"):
 
@@ -100,7 +100,7 @@ while True:
                 for d in data:
                     date = str(d["date"])
                     end = datetime.strptime(date, '%Y-%m-%d %H:%M:%S')
-                    end = end + relativedelta(days=1)
+                    end = end + relativedelta(days=2)
                     end = end.date()
                     date_now = datetime.now()
                     date_now = date_now.date()
@@ -126,7 +126,7 @@ while True:
                             message_id = d["message_id"]
                             date = str(d["date"])
                             end = datetime.strptime(date, '%Y-%m-%d %H:%M:%S')
-                            end = end + relativedelta(days=1)
+                            end = end + relativedelta(days=2)
                             end = end.date()
                             date_now = datetime.now()
                             date_now = date_now.date()
@@ -165,8 +165,8 @@ while True:
                                     pass
                                 # TARGET 1
                                 try:
-                                    if str(entry1) != "false" and str(entry2) != "false": 
-                                        if priceNow >=  float(target1): 
+                                    if priceNow >=  float(target1): 
+                                        if str(entry1) == "false" and str(entry2) == "false": 
                                             now = datetime.now()
                                             datem = datetime.strptime(date, "%Y-%m-%d %H:%M:%S")
                                             then = datetime(int(datem.year), int(datem.month), int(datem.day), int(datem.hour), int(datem.minute), int(datem.second))
@@ -175,9 +175,9 @@ while True:
                                             per = round(per, 2)
                                             send_msg("#"+str(coin)+"\n\n💎 ضربت الهذف الأول ("+str(target1)+")\n\n✅ نسبة الربح : "+str(per)+"%\n\n"+str(date), message_id, chat_id)
                                             user.editsignals(collection="signal", Owenr=str(chat_id), coin=coin, newInfo="false", target="entry1-entry2-target1")
-                                    elif str(entry1) == "false" and str(entry2) == "false":
-                                        send_msg("#"+str(coin)+"\n\n❌ ملغية ضربت الهذف قبل ما تدخل لمنطقة الشراء", message_id, chat_id)
-                                        user.editsignals(collection="signal", Owenr=str(chat_id), coin=coin, newInfo="true", target="stop-entry1-entry2-target1-target2-target3-target4")
+                                        else:
+                                            send_msg("#"+str(coin)+"\n\n❌ ملغية ضربت الهذف قبل ما تدخل لمنطقة الشراء", message_id, chat_id)
+                                            user.editsignals(collection="signal", Owenr=str(chat_id), coin=coin, newInfo="false", target="stop-entry1-entry2-target1-target2-target3-target4")
                                 except:
                                     pass
                                 # TARGET 2
