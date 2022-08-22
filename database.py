@@ -16,8 +16,9 @@ class user():
     def findsignals(collection, Owenr, coin):
         collection = db[collection]
         signal = {"Owenr":Owenr, "coin":coin}
+        data = collection.find(signal)
         count = collection.count_documents(signal)
-        return count
+        return data, count
 
     def findsignals1(collection):
         collection = db[collection]
