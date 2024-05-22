@@ -1,7 +1,7 @@
 import pymongo
 
-passd = "ckZpYU8HGpnc5i9i"
-named = "track"
+passd = "password"
+named = "nameofDB"
 
 client = pymongo.MongoClient("mongodb+srv://test:"+passd+"@cluster1.9glic.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
 db = client.get_database(named)
